@@ -1,0 +1,27 @@
+{
+  "name": "Silsilah Kaum Suku Tanjung",
+  "short_name": "Suku Tanjung",
+  "description": "Silsilah interaktif Kaum Suku Tanjung dari Cingkariang ke Padang Limau",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#c9a84c",
+  "orientation": "any",
+  "scope": "./",
+  "lang": "id",
+  "categories": ["education", "reference", "family"],
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
