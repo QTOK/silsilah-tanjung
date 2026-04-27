@@ -361,6 +361,89 @@
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
             }
+        /* === MOBILE MENU STYLES === */
+.mobile-menu-btn {
+    display: none; /* Hidden di desktop */
+    font-size: 1.8rem;
+    color: var(--gold-primary);
+    cursor: pointer;
+    padding: 10px;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.mobile-menu-btn:hover {
+    color: var(--gold-light);
+    transform: scale(1.1);
+}
+
+/* Tampilkan tombol hamburger hanya di mobile */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+        border-bottom: 2px solid var(--gold-primary);
+        z-index: 999;
+    }
+    
+    .nav-links.active {
+        max-height: 400px; /* Cukup untuk 5-6 menu */
+        padding: 25px 0;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+    }
+    
+    .nav-links.active li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Stagger animation untuk efek cascade */
+    .nav-links.active li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-links.active li:nth-child(2) { transition-delay: 0.2s; }
+    .nav-links.active li:nth-child(3) { transition-delay: 0.3s; }
+    .nav-links.active li:nth-child(4) { transition-delay: 0.4s; }
+    .nav-links.active li:nth-child(5) { transition-delay: 0.5s; }
+    
+    .nav-links a {
+        display: block;
+        padding: 15px 20px;
+        font-size: 1.1rem;
+        border-left: 3px solid transparent;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+        background: rgba(212, 175, 55, 0.1);
+        border-left-color: var(--gold-primary);
+        padding-left: 25px;
+    }
+    
+    .nav-links a::after {
+        display: none; /* Hilangkan efek garis bawah desktop */
+    }
+}
     </style>
 </head>
 <body>
@@ -375,6 +458,10 @@
     <nav id="navbar">
         <div class="nav-container">
             <div class="logo">SUKU TANJUNG</div>
+            <!-- TOMBOL HAMBURGER MOBILE (Tambahkan setelah div class="logo") -->
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+            </div>
             <ul class="nav-links">
                 <li><a href="#beranda">Beranda</a></li>
                 <li><a href="#tentang">Tentang</a></li>
@@ -714,6 +801,47 @@
         document.getElementById('waMessage').value = "";
         closeWaModal();
             }
+        // === MOBILE MENU TOGGLE ===
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const menuBtn = document.querySelector('.mobile-menu-btn i');
+    
+    navLinks.classList.toggle('active');
+    
+    // Ganti icon hamburger ke X dan sebaliknya
+    if (navLinks.classList.contains('active')) {
+        menuBtn.classList.remove('fa-bars');
+        menuBtn.classList.add('fa-times');
+    } else {
+        menuBtn.classList.remove('fa-times');
+        menuBtn.classList.add('fa-bars');
+    }
+}
+
+// Tutup menu mobile saat link diklik (agar langsung scroll ke section)
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        const menuBtn = document.querySelector('.mobile-menu-btn i');
+        
+        navLinks.classList.remove('active');
+        menuBtn.classList.remove('fa-times');
+        menuBtn.classList.add('fa-bars');
+    });
+});
+
+// Tutup menu jika klik di luar area nav
+document.addEventListener('click', (e) => {
+    const nav = document.querySelector('nav');
+    const navLinks = document.querySelector('.nav-links');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    
+    if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuBtn.querySelector('i').classList.remove('fa-times');
+        menuBtn.querySelector('i').classList.add('fa-bars');
+    }
+});
         
         // ==========================================
 // REGISTER SERVICE WORKER
