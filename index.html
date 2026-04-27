@@ -74,6 +74,71 @@
         .gallery-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold-primary); margin-bottom: 10px; }
         .gallery-desc { font-size: 1rem; color: rgba(245, 240, 230, 0.8); }
 
+            .video-history-section {
+        padding: 80px 50px;
+        background: linear-gradient(180deg, var(--black-rich) 0%, #0f0f0f 100%);
+        border-top: 1px solid rgba(212, 175, 55, 0.2);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .video-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        border: 3px solid var(--gold-primary);
+        background: #000;
+    }
+
+    .video-container video {
+        width: 100%;
+        height: auto;
+        display: block;
+        outline: none;
+    }
+
+    /* Custom Play Button Overlay (Optional aesthetic touch) */
+    .video-overlay-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        background: rgba(212, 175, 55, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+        pointer-events: none; /* Biarkan klik tembus ke video controls asli */
+        opacity: 0;
+    }
+    
+    .video-container:hover .video-overlay-play {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .video-overlay-play i {
+        font-size: 30px;
+        color: var(--black-deep);
+        margin-left: 5px;
+    }
+
+    .video-caption {
+        text-align: center;
+        margin-top: 30px;
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        color: rgba(245, 240, 230, 0.7);
+        font-size: 1.1rem;
+    }
+
         .timeline-section { background: rgba(10,10,10,0.9); }
         .timeline { position: relative; max-width: 1000px; margin: 0 auto; }
         .timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 3px; height: 100%; background: linear-gradient(180deg, var(--gold-primary), var(--gold-dark)); }
@@ -417,6 +482,31 @@
                 </div>
            </div>
         </div>
+    </section>
+    <section class="video-history-section" id="video-sejarah">
+    <div class="section-header">
+        <div class="section-badge">DOKUMENTASI GERAK</div>
+        <h2 class="section-title">Video Sejarah Perjalanan</h2>
+        <p class="section-subtitle">Menyaksikan Jejak Leluhur Dari Masa Ke Masa</p>
+    </div>
+
+    <div class="video-container">
+        <!-- Tombol Play Hiasan -->
+        <div class="video-overlay-play">
+            <i class="fas fa-play"></i>
+        </div>
+        
+        <!-- Video Player -->
+        <!-- Pastikan file video ada di folder videos-sejarah dengan nama sejarah.mp4 -->
+        <video controls poster="https://via.placeholder.com/1000x560/1a1a1a/D4AF37?text=Klik+Untuk+Memutar+Video+Sejarah">
+            <source src="videos-sejarah/sejarah.mp4" type="video/mp4">
+            Browser Anda tidak mendukung tag video.
+        </video>
+    </div>
+
+    <div class="video-caption">
+        "Setiap langkah adalah sejarah, setiap detikan adalah warisan."
+    </div>
     </section>
 
     <!-- 4. TIMELINE -->
