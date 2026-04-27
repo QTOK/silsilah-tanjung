@@ -74,14 +74,14 @@
         .gallery-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold-primary); margin-bottom: 10px; }
         .gallery-desc { font-size: 1rem; color: rgba(245, 240, 230, 0.8); }
 
-            .video-history-section {
+          .youtube-section {
         padding: 80px 50px;
         background: linear-gradient(180deg, var(--black-rich) 0%, #0f0f0f 100%);
         border-top: 1px solid rgba(212, 175, 55, 0.2);
         border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     }
 
-    .video-container {
+    .youtube-container {
         max-width: 1000px;
         margin: 0 auto;
         position: relative;
@@ -92,45 +92,23 @@
         background: #000;
     }
 
-    .video-container video {
-        width: 100%;
-        height: auto;
-        display: block;
-        outline: none;
+    .youtube-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* Ratio 16:9 */
+        height: 0;
+        overflow: hidden;
     }
 
-    /* Custom Play Button Overlay (Optional aesthetic touch) */
-    .video-overlay-play {
+    .youtube-wrapper iframe {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 80px;
-        height: 80px;
-        background: rgba(212, 175, 55, 0.9);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        z-index: 10;
-        pointer-events: none; /* Biarkan klik tembus ke video controls asli */
-        opacity: 0;
-    }
-    
-    .video-container:hover .video-overlay-play {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.1);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
     }
 
-    .video-overlay-play i {
-        font-size: 30px;
-        color: var(--black-deep);
-        margin-left: 5px;
-    }
-
-    .video-caption {
+    .youtube-caption {
         text-align: center;
         margin-top: 30px;
         font-family: 'Cormorant Garamond', serif;
@@ -139,6 +117,21 @@
         font-size: 1.1rem;
     }
 
+    .youtube-info {
+        text-align: center;
+        margin-top: 20px;
+        padding: 20px;
+        background: rgba(212, 175, 55, 0.1);
+        border-radius: 10px;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .youtube-info p {
+        font-family: 'Cormorant Garamond', serif;
+        color: var(--gold-light);
+        font-size: 1rem;
+        margin: 0;
+    }
         .timeline-section { background: rgba(10,10,10,0.9); }
         .timeline { position: relative; max-width: 1000px; margin: 0 auto; }
         .timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 3px; height: 100%; background: linear-gradient(180deg, var(--gold-primary), var(--gold-dark)); }
@@ -483,28 +476,30 @@
            </div>
         </div>
     </section>
-    <section class="video-history-section" id="video-sejarah">
+    <section class="youtube-section" id="video-sejarah">
     <div class="section-header">
-        <div class="section-badge">DOKUMENTASI GERAK</div>
+        <div class="section-badge">DOKUMENTASI VIDEO</div>
         <h2 class="section-title">Video Sejarah Perjalanan</h2>
         <p class="section-subtitle">Menyaksikan Jejak Leluhur Dari Masa Ke Masa</p>
     </div>
 
-    <div class="video-container">
-        <!-- Tombol Play Hiasan -->
-        <div class="video-overlay-play">
-            <i class="fas fa-play"></i>
+    <div class="youtube-container">
+        <div class="youtube-wrapper">
+            <iframe 
+                src="https://www.youtube.com/embed/k2kFoP4SD-o?rel=0&modestbranding=1" 
+                title="Video Sejarah Suku Tanjung - Padang Limau"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
         </div>
-        
-        <!-- Video Player -->
-        <!-- Pastikan file video ada di folder videos-sejarah dengan nama sejarah.mp4 -->
-        <video controls poster="https://via.placeholder.com/1000x560/1a1a1a/D4AF37?text=Klik+Untuk+Memutar+Video+Sejarah">
-            <source src="videos-sejarah/sejarah.mp4" type="video/mp4">
-            Browser Anda tidak mendukung tag video.
-        </video>
     </div>
 
-    <div class="video-caption">
+    <div class="youtube-info">
+        <p><i class="fas fa-play-circle" style="color: var(--gold-primary); margin-right: 10px;"></i> 
+        Tonton dokumentasi perjalanan leluhur dari Cingkariang hingga Padang Limau</p>
+    </div>
+
+    <div class="youtube-caption">
         "Setiap langkah adalah sejarah, setiap detikan adalah warisan."
     </div>
     </section>
